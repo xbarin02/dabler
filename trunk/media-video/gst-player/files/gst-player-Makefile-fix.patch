@@ -1,0 +1,12 @@
+diff -rupN old//Makefile new//Makefile
+--- old//Makefile	2012-03-19 14:48:06.000000000 +0100
++++ new//Makefile	2012-03-19 16:28:23.000000000 +0100
+@@ -17,7 +17,7 @@ binaries += gst-player
+ all: $(binaries)
+ 
+ $(binaries):
+-	$(CC) $(LDFLAGS) $(LIBS) -o $@ $^
++	$(CC) $(LIBS) $(LDFLAGS) -o $@ $^
+ 
+ %.o:: %.c
+ 	$(CC) $(CFLAGS) -o $@ -c $<
