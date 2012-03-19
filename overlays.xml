@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<repositories xmlns="" version="1.0">
+	<repo quality="experimental" status="unofficial">
+		<name>dabler</name>
+		<description>DaBler's ebuilds</description>
+		<homepage>http://code.google.com/p/dabler/</homepage>
+		<owner type="person">
+			<email>dabler+gentoo@gmail.com</email>
+			<name>David Barina</name>
+		</owner>
+		<source type="svn">http://dabler.googlecode.com/svn/trunk/</source>
+	</repo>
+</repositories>
