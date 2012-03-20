@@ -12,11 +12,11 @@ SLOT="0"
 LICENSE="GPL-2"
 IUSE=""
 
-DEPEND="media-libs/gstreamer
+DEPEND="media-libs/gstreamer:0.10
 	gnome-base/libglade
 	x11-libs/goocanvas
 	x11-libs/gdk-pixbuf
-	x11-libs/gtk+"
+	x11-libs/gtk+:2"
 RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${P/-/}
