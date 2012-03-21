@@ -14,7 +14,8 @@ LICENSE="BUT"
 SLOT="0"
 KEYWORDS="-* amd64"
 IUSE="+doc +static-libs debug +opencv"
-DEPEND="opencv? ( media-libs/opencv )"
+DEPEND="opencv? ( media-libs/opencv )
+	doc? ( app-doc/doxygen )"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}-${PACKAGE_VERSION}"
