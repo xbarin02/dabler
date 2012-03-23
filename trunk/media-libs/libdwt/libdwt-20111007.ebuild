@@ -22,20 +22,36 @@ S="${WORKDIR}/${PN}-${PACKAGE_VERSION}"
 
 src_compile() {
 	emake -C src ARCH="${CHOST%%-*}" BUILD=$(usex debug debug release) || die "emake failed"
-	use opencv && ( emake -C src ARCH="${CHOST%%-*}" BUILD=$(usex debug debug release) cvdwt.o || die "emake failed" )
-	use doc && ( emake -C doc || die "emake failed" )
-	use static-libs && ( "$(tc-getAR)" -rsc "${PN}.a" "src/${PN}.o" || die "ar failed" )
-	use static-libs && use opencv && ( "$(tc-getAR)" -rsc cvdwt.a "src/cvdwt.o" || die "ar failed" )
-	"$(tc-getCC)" -shared -o "${PN}.so" "src/${PN}.o" || die "cc failed"
+	if use opencv ; then
+		emake -C src ARCH="${CHOST%%-*}" BUILD=$(usex debug debug release) cvdwt.o || die "emake failed"
+	fi
+	if use doc ; then
+		emake -C doc || die "emake failed"
+	fi
+	if use static-libs ; then
+		"$(tc-getAR)" -rsc "${PN}.a" "src/${PN}.o" || die "ar failed"
+	fi
+	if use static-libs && use opencv ; then
+		"$(tc-getAR)" -rsc cvdwt.a "src/cvdwt.o" || die "ar failed"
+	fi
+	"$(tc-getCC)" -shared -Wl,-soname,${PN}.so.0 -o "${PN}.so.0.${PV}" "src/${PN}.o" || die "cc failed"
+	ln -s "${PN}.so.0.${PV}" "${PN}.so.0"
 }
 
 src_install()
 {
 	install -D -m0644 src/${PN}.h ${ED}/usr/include/${PN}.h || die "install failed"
-	use opencv && ( install -D -m0644 src/cvdwt.h ${ED}/usr/include/cvdwt.h || die "install failed" )
-	use static-libs && ( dolib.a "${PN}.a" || die "dolib.a failed" )
-	use static-libs && use opencv && ( dolib.a "cvdwt.a" || die "dolib.a failed" )
-	dolib.so "${PN}.so" || die "dolib.so failed"
+	if use opencv ; then
+		install -D -m0644 src/cvdwt.h ${ED}/usr/include/cvdwt.h || die "install failed"
+	fi
+	if use static-libs ; then
+		dolib.a "${PN}.a" || die "dolib.a failed"
+	fi
+	if use static-libs && use opencv ; then
+		dolib.a "cvdwt.a" || die "dolib.a failed"
+	fi
+	dolib.so "${PN}.so.0.${PV}" || die "dolib.so failed"
+	dolib.so "${PN}.so.0" || die "dolib.so failed"
 	use doc && ( dohtml -r doc/html/* || die "dohtml failed" )
 	dodoc AUTHORS ChangeLog INSTALL README THANKS TODO VERSION || die "dodoc failed"
 }
