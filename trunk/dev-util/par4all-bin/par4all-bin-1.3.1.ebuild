@@ -21,7 +21,8 @@ SLOT="0"
 KEYWORDS="-* amd64 ~x86"
 IUSE="cuda"
 
-DEPEND="sys-apps/sed"
+DEPEND="sys-apps/sed
+	app-admin/chrpath"
 RDEPEND="dev-util/cproto
 	sys-devel/gcc[fortran,openmp]
 	sci-visualization/gnuplot
@@ -37,8 +38,22 @@ src_install()
 	dodir /usr
 	cp -R "${MY_P}" "${ED}"/usr/"${MY_PN}"
 	dosym ../lib/python2.7/site-packages/pips/p4a.py /usr/"${MY_PN}"/bin/p4a
+
+	# FIXME:
+	# Many of installed ELFs have RPATH to /usr/local/par4all. These ELFs should be fixed with chrpath.
+	# Otherwise, you get an error like "undefined symbol: get_stubs"...
+	# Also in all *.sh, *.la, *.pc and *.py files should be /usr/local/par4all replaced.
+
 	sed -i "s|/usr/local/|/usr/|" "${ED}"/usr/"${MY_PN}"/etc/par4all-rc.*sh
 	sed -i "s|/usr/local/${MY_PN}|/usr/${MY_PN}|g" "${ED}"/usr/"${MY_PN}"/lib/python2.7/site-packages/pips/*.py
+
+	sed -i "s|/usr/local/${MY_PN}|/usr/${MY_PN}|g" "${ED}"/usr/"${MY_PN}"/lib/python2.7/site-packages/pips/*.la
+	sed -i "s|/usr/local/${MY_PN}|/usr/${MY_PN}|g" "${ED}"/usr/"${MY_PN}"/lib/*.la
+	sed -i "s|/usr/local/${MY_PN}|/usr/${MY_PN}|g" "${ED}"/usr/"${MY_PN}"/lib/pkgconfig/*.pc
+	sed -i "s|/usr/local/${MY_PN}|/usr/${MY_PN}|g" "${ED}"/usr/"${MY_PN}"/bin/{pips_f2openmp,pips_c2openmp,pips-make,step_install}
+
+	chrpath -r /usr/par4all/lib "${ED}"/usr/"${MY_PN}"/lib/{liblinearlibs,libpipslibs}.so
+	chrpath -r /usr/par4all/lib "${ED}"/usr/"${MY_PN}"/lib/python2.7/site-packages/pips/_pypips.so
 }
 
 pkg_postinst()
