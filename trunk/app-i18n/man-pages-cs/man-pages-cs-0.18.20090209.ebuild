@@ -17,10 +17,12 @@ DEPEND="app-arch/xz-utils"
 RDEPEND="virtual/man"
 
 src_prepare() {
-	rm procps/{kill,uptime}.1 man-pages/man1/{dir,du,vdir}.1
+	rm -f procps/{kill,uptime}.1 man-pages/man1/{dir,du,vdir}.1
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc CONTRIB README*
+
+	rm -f "${D}"/usr/share/man/cs/man1/{groups,su}.1 # sys-apps/shadow
 }
