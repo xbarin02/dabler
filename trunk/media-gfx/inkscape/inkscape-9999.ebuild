@@ -15,7 +15,7 @@ ESVN_PROJECT="inkscape"
 
 SLOT="0"
 LICENSE="GPL-2 LGPL-2.1"
-KEYWORDS=""
+KEYWORDS="amd64"
 IUSE="cairo dia doc gnome inkjar jabber lcms mmx nls perl postscript python spell wmf"
 RESTRICT="test"
 
