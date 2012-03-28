@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<use>
+		<flag name="modules">Build MDSTk modules.</flag>
+		<flag name="opengl">Builds MDSTk modules that use OpenGL.</flag>
+		<flag name="vector">Builds VectorEntity library.</flag>
+		<flag name="opencv">Enables support for the OpenCV library.</flag>
+		<flag name="fftw">Enables the FFTW library.</flag>
+		<flag name="openmp">Enables OpenMP in both the MDSTk and the Eigen library.</flag>
+		<flag name="xml">Enables experimental XML serialization support via the TinyXML library.</flag>
+	</use>
+    </pkgmetadata>
