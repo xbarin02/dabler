@@ -1,0 +1,53 @@
+--- MDSTk/include/MDSTk/ImageIO/mdsDicomSlice.h
++++ MDSTk/include/MDSTk/ImageIO/mdsDicomSlice.h
+@@ -119,6 +119,12 @@ public:
+     //! Slice file name
+     std::string m_sSliceFileName;
+ 
++    //! Image type.
++    std::string m_sImageType;
++
++    //! Scan options (AXIAL, etc.).
++    std::string m_sScanOptions;
++
+ public:
+     //! Default constructor.
+     CDicomSlice();
+--- MDSTk/src/lib/ImageIO/mdsDicomSlice.cpp
++++ MDSTk/src/lib/ImageIO/mdsDicomSlice.cpp
+@@ -156,6 +156,8 @@ CDicomSlice::CDicomSlice(const CDicomSli
+     , m_ImageOrientationX(Slice.m_ImageOrientationX)
+     , m_ImageOrientationY(Slice.m_ImageOrientationY)
+     , m_sSliceFileName(Slice.m_sSliceFileName)
++    , m_sImageType(Slice.m_sImageType)
++    , m_sScanOptions(Slice.m_sScanOptions)
+ {
+ }
+ 
+@@ -188,6 +190,8 @@ CDicomSlice::CDicomSlice(const CDicomSli
+     , m_ImageOrientationX(Slice.m_ImageOrientationX)
+     , m_ImageOrientationY(Slice.m_ImageOrientationY)
+     , m_sSliceFileName(Slice.m_sSliceFileName)
++    , m_sImageType(Slice.m_sImageType)
++    , m_sScanOptions(Slice.m_sScanOptions)
+ {
+ }
+ 
+@@ -246,6 +250,8 @@ CDicomSlice& CDicomSlice::operator =(con
+     m_ImageOrientationX = Slice.m_ImageOrientationX;
+     m_ImageOrientationY = Slice.m_ImageOrientationY;
+     m_sSliceFileName = Slice.m_sSliceFileName;
++    m_sImageType = Slice.m_sImageType;
++    m_sScanOptions = Slice.m_sScanOptions;
+ 
+     return *this;
+ }
+@@ -311,6 +317,8 @@ bool CDicomSlice::readDicom(mds::mod::CC
+     m_sSeriesTime.erase();
+     m_sPatientPosition.erase();
+     m_sSliceFileName.erase();
++    m_sImageType.erase();
++    m_sScanOptions.erase();
+ 
+     m_ImageOrientationX.setXYZ(1, 0, 0);
+     m_ImageOrientationY.setXYZ(0, 1, 0);

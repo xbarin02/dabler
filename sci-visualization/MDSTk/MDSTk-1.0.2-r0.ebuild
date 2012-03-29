@@ -40,6 +40,7 @@ is_64bit() { [ "${ARCH}" == "amd64" ] && echo ON || echo OFF ; }
 
 src_prepare() {
 	epatch "${FILESDIR}/${P}-new-libpng.patch"
+	epatch "${FILESDIR}/${P}-fix-CDicomSlice.patch"
 }
 
 src_configure() {
