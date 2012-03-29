@@ -13,13 +13,11 @@ LICENSE="BSD"
 SLOT="0"
 KEYWORDS="amd64 ~x86"
 
-IUSE="debug doc +static-libs +modules opengl vector opencv fftw openmp xml"
+IUSE="debug doc +static-libs +modules opengl vector fftw xml"
 
 CDEPEND="
-	openmp? ( sys-devel/gcc[openmp] )
 	opengl? ( media-libs/freeglut virtual/opengl virtual/glu )
 	doc? ( app-doc/doxygen[dot] )
-	opencv? ( media-libs/opencv )
 	fftw? ( sci-libs/fftw )
 	dev-cpp/eigen:3
 	virtual/jpeg
@@ -40,6 +38,10 @@ mds_use_enabled() { echo "-DMDS_${1}_ENABLED=$(use $2 && echo ON || echo OFF)" ;
 
 is_64bit() { [ "${ARCH}" == "amd64" ] && echo ON || echo OFF ; }
 
+src_prepare() {
+    epatch "${FILESDIR}/${P}-new-libpng.patch"
+}
+
 src_configure() {
 	mycmakeargs=(
 		-DMDS_PREFER_SUPPLIED_3RDPARTY_LIBS=OFF
@@ -50,24 +52,17 @@ src_configure() {
 		-DBUILD_TESTS=OFF
 		$(cmake-utils_use_build vector VECTOR_ENTITY)
 		-DEIGEN_DONT_VECTORIZE=OFF
-		-DEIGEN_DONT_PARALLELIZE=$(usex openmp ON OFF)
-		-DEIGEN_DONT_ALIGN=OFF
 		-DEIGEN_ENABLE_ALTIVEC=$(cpu_has altivec)
-		-DEIGEN_ENABLE_NEON=$(cpu_has neon)
 		-DEIGEN_ENABLE_SSE2=$(cpu_has sse2)
 		-DEIGEN_ENABLE_SSE3=$(cpu_has pni)
-		-DEIGEN_ENABLE_SSE4_1=$(cpu_has sse4_1)
-		-DEIGEN_ENABLE_SSE4_2=$(cpu_has sse4_2)
 		-DEIGEN_ENABLE_SSSE3=$(cpu_has ssse3)
-		-DEIGEN_FAST_MATH=OFF
 		-DMDSTk_3RDPARTY_DIR=${EROOT}usr
 		-DMDS_EXPLICIT_TEMPLATE_INSTANTIATION=ON
 		$(mds_use_enabled FFTW fftw)
 		-DMDS_GENERATE_64BIT_CODE=$(is_64bit)
 		-DMDS_LOGGING_DISABLED=OFF
 		-DMDS_MULTITHREADED=ON
-		$(mds_use_enabled OPENCV opencv)
-		$(mds_use_enabled OPENMP openmp)
+		-DMDS_OPENCV_ENABLED=OFF
 		-DMDS_UMFPACK_ENABLED=OFF
 		$(mds_use_enabled XML xml)
 		-DTIXML_USE_STL=ON
