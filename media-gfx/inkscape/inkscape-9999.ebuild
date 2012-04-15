@@ -36,7 +36,7 @@ COMMON_DEPEND="
 	>=media-libs/freetype-2
 	media-libs/libpng
 	x11-libs/libXft
-	>=x11-libs/gtk+-2.10.7
+	>=x11-libs/gtk+-2.10.7:2
 	>=x11-libs/pango-1.4.0
 	sci-libs/gsl
 	gnome? ( >=gnome-base/gnome-vfs-2.0 )
