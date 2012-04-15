@@ -21,7 +21,7 @@ RESTRICT="test"
 
 COMMON_DEPEND="
 	dev-cpp/glibmm
-	>=dev-cpp/gtkmm-2.10.0
+	>=dev-cpp/gtkmm-2.10.0:2.4
 	>=dev-libs/boehm-gc-6.4
 	dev-libs/boost
 	>=dev-libs/glib-2.6.5
