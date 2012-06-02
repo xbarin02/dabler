@@ -1,0 +1,11 @@
+--- libs/gst/editor/stockicons.h.orig	2012-06-02 09:03:20.000000000 +0200
++++ libs/gst/editor/stockicons.h	2012-06-02 09:03:30.000000000 +0200
+@@ -1,7 +1,7 @@
+ #ifndef __GST_EDITOR_STOCK_ICONS_H__
+ #define __GST_EDITOR_STOCK_ICONS_H__
+ 
+-#include <glib/gmacros.h>
++#include <glib.h>
+ #include <gtk/gtkiconfactory.h>
+ 
+ G_BEGIN_DECLS
