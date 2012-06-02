@@ -51,7 +51,10 @@ RDEPEND="
 	xine? ( media-libs/xine-lib )
 "
 DEPEND="${RDEPEND}
-	doc? ( virtual/latex-base )
+	doc? (
+		virtual/latex-base
+		dev-python/sphinx
+	)
 	virtual/pkgconfig
 "
 
