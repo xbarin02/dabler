@@ -8,7 +8,7 @@ inherit eutils git-2 autotools
 
 DESCRIPTION="Advanced and well-established text-mode web browser"
 HOMEPAGE="http://elinks.or.cz/"
-EGIT_REPO_URI="http://elinks.cz/elinks.git"
+EGIT_REPO_URI="git://repo.or.cz/elinks.git http://elinks.cz/elinks.git"
 SRC_URI="http://dev.gentoo.org/~spock/portage/distfiles/elinks-0.10.4.conf.bz2"
 LICENSE="GPL-2"
 SLOT="0"
@@ -45,10 +45,6 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/elinks-0.11.5-makefile.patch
 	epatch "${FILESDIR}"/elinks-0.12_pre5-compilation-fix.patch
-
-	if use javascript && has_version ">=dev-lang/spidermonkey-1.8"; then
-		epatch "${FILESDIR}"/elinks-0.12pre5-spidermonkey-callback.patch
-	fi
 
 	./autogen.sh
 }
