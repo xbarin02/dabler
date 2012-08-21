@@ -2,8 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-KMNAME=kdebase
 EAPI="1"
+KMNAME=kdebase
 
 inherit kde-meta eutils
 
