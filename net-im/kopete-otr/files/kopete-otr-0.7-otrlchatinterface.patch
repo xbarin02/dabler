@@ -1,0 +1,10 @@
+--- otrlchatinterface.cpp	2009-02-16 21:56:07.000000000 +0100
++++ otrlchatinterface_änderung.cpp	2009-02-16 21:11:12.000000000 +0100
+@@ -165,6 +165,7 @@
+ static const char *protocol_name(void *opdata, const char *protocol){
+ //Never seen...
+ 	kdDebug() << "protocol_name called" << endl;
++	return 0;
+ }
+ 
+ static void protocol_name_free(void *opdata, const char *protocol_name){
