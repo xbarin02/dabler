@@ -1,0 +1,7 @@
+--- akonadi/akonadi_includes.h	2012-10-14 10:57:23.000000000 +0200
++++ akonadi/akonadi_includes.h	2012-10-14 10:52:21.000000000 +0200
+@@ -102,3 +102,4 @@
+ #include <akonadi/transactionsequence.h>
+ #include <akonadi/transportresourcebase.h>
+ #include <akonadi/unlinkjob.h>
++#include <boost/exception/exception.hpp>
