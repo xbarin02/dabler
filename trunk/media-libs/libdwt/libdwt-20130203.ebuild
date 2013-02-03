@@ -6,7 +6,7 @@ EAPI=3
 
 inherit eutils toolchain-funcs
 
-PACKAGE_SUFFIX="-dev-r1"
+PACKAGE_SUFFIX="-dev"
 PACKAGE_VERSION="${PV:0:4}-${PV:4:2}-${PV:6:2}${PACKAGE_SUFFIX}"
 PRODUCT_ID=211
 DESCRIPTION="A cross-platform discrete wavelet transform library"
