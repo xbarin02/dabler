@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -18,7 +18,8 @@ SLOT="0"
 KEYWORDS="~alpha amd64 ~arm hppa x86 ~x86-fbsd"
 IUSE="debug"
 
-DEPEND="x11-libs/qt-gui:4
+DEPEND="dev-qt/qtcore:4
+	dev-qt/qtgui:4
 	dev-libs/quazip"
 MPLAYER_USE="[libass,png,X]"
 RDEPEND="${DEPEND}
