@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -15,7 +15,7 @@ ESVN_PROJECT="inkscape"
 
 SLOT="0"
 LICENSE="GPL-2 LGPL-2.1"
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 IUSE="cairo dia doc gnome inkjar jabber lcms mmx nls perl postscript python spell wmf"
 RESTRICT="test"
 
