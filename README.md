@@ -5,4 +5,4 @@ Welcome to the homepage of DaBler's Gentoo overlay. This overlay is focused on i
 
 Use following line to add this overlay:
 
-layman -o http://dabler.googlecode.com/svn/trunk/overlays.xml -f -a dabler
+```layman -o http://dabler.googlecode.com/svn/trunk/overlays.xml -f -a dabler```
